@@ -6,36 +6,35 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class LauncherActivity extends BaseActivity {
-
-	Button login, register;
+public class LoginActivity extends BaseActivity{
+	
+	Button login, loginvk;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_launcher);
-		
-		setTitle(R.string.actiontitle_launcher);
+		setContentView(R.layout.activity_login);
+	
+		setTitle(R.string.actiontitle_login);
 		
 		login = (Button)findViewById(R.id.but_login);
 		login.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(LauncherActivity.this, LoginActivity.class);
+				Intent i = new Intent(LoginActivity.this, null);
 				startActivity(i);
 			}
 		});
 		
-		register = (Button)findViewById(R.id.but_register);
-		register.setOnClickListener(new OnClickListener() {
+		loginvk = (Button)findViewById(R.id.but_loginvk);
+		loginvk.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(LauncherActivity.this, RegisterActivity.class);
+				Intent i = new Intent(LoginActivity.this, null);
 				startActivity(i);
 			}
 		});
 	}
-	
 }

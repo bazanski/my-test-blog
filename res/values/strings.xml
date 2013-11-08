@@ -7,6 +7,8 @@
 
     <string name="actiontitle_launcher">Welcome!</string>
     <string name="actiontitle_login">Authorization</string>
+    <string name="actiontitle_register">Registration</string>
+    <string name="actiontitle_main">Articles list</string>
     <string name="actiontitle_vklogin">vk.com Authorization</string>
     
     <string name="text_appmaininfo">The best blog in the world =)</string>
@@ -14,6 +16,7 @@
     <string name="text_enteremail">Your e-mail :</string>
     <string name="text_enterpass">Password :</string>
     <string name="text_repeatpass">Repeat password :</string>
+    <string name="text_articleauthor">Author :</string>
     
     <string name="but_enter">Log in</string>
     <string name="but_register">Register</string>
