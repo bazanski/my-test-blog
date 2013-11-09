@@ -14,7 +14,6 @@ import android.widget.TextView;
 public class BaseActivity extends Activity{
 
 	ActionBar bar;
-	View BarView;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +22,10 @@ public class BaseActivity extends Activity{
         //getActionBar().setCustomView(R.layout.item_actionbar);
         
         bar = getActionBar();
-        BarView = new View(this);
-        BarView.inflate(this, R.layout.item_actionbar, null);
-        
-        bar.setCustomView(BarView);
+        bar.setCustomView(R.layout.item_actionbar);
+        bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
+        		| ActionBar.DISPLAY_SHOW_HOME 
+        		| ActionBar.DISPLAY_HOME_AS_UP);
         setEmptyActionItems();
     }
 
@@ -40,27 +39,33 @@ public class BaseActivity extends Activity{
     
     public void setTitle(String title) {
     	//getActionBar().setTitle(title);
+    	
     	TextView title_tv = new TextView(this);
-    	title_tv = (TextView)BarView.findViewById(R.id.action_title);
+    	title_tv = (TextView)bar.getCustomView().findViewById(R.id.action_title);
     	title_tv.setText(title);
+    	
     }
     
     public void setTitle(int resId) {
     	//getActionBar().setTitle(resId);
+    	
     	TextView title_tv = new TextView(this);
-    	title_tv = (TextView)BarView.findViewById(R.id.action_title);
+    	title_tv = (TextView)bar.getCustomView().findViewById(R.id.action_title);
     	title_tv.setText(getResources().getString(resId));
+    	
     }
     
     public void setEmptyActionItems() {
     	TextView item1st_tv = new TextView(this);
-    	item1st_tv = (TextView)BarView.findViewById(R.id.action_1stitem);
+    	item1st_tv = (TextView)bar.getCustomView().findViewById(R.id.action_1stitem);
+    	item1st_tv.setText("haha");
     	
     	TextView item2nd_tv = new TextView(this);
-    	item2nd_tv = (TextView)BarView.findViewById(R.id.action_2nditem);
+    	item2nd_tv = (TextView)bar.getCustomView().findViewById(R.id.action_2nditem);
+    	item2nd_tv.setText("hehe");
     	
     	View sep = new View(this);
-    	sep = (View)BarView.findViewById(R.id.separator);
+    	sep = (View)bar.getCustomView().findViewById(R.id.separator);
     	
     	item1st_tv.setVisibility(LinearLayout.INVISIBLE);
     	item2nd_tv.setVisibility(LinearLayout.INVISIBLE);
