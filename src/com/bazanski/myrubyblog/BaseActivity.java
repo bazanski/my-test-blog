@@ -3,11 +3,9 @@ package com.bazanski.myrubyblog;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 

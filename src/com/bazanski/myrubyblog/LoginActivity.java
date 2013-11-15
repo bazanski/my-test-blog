@@ -22,7 +22,7 @@ public class LoginActivity extends BaseActivity{
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(LoginActivity.this, null);
+				Intent i = new Intent(LoginActivity.this, MainActivity.class);
 				startActivity(i);
 			}
 		});

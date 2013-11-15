@@ -9,6 +9,7 @@
     <string name="actiontitle_login">Authorization</string>
     <string name="actiontitle_register">Registration</string>
     <string name="actiontitle_main">Articles list</string>
+    <string name="actiontitle_showarticle">Article :</string>
     <string name="actiontitle_vklogin">vk.com Authorization</string>
     
     <string name="text_appmaininfo">The best blog in the world =)</string>
@@ -17,10 +18,16 @@
     <string name="text_enterpass">Password :</string>
     <string name="text_repeatpass">Repeat password :</string>
     <string name="text_articleauthor">Author :</string>
+    <string name="text_testarticle">This article \n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla
+        \n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla
+        \n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla</string>
     
     <string name="but_enter">Log in</string>
     <string name="but_register">Register</string>
     <string name="but_registervk">Register with vk account</string>
     <string name="but_entervk">Log in with vk account</string>
+    <string name="but_editarticle">Edit</string>
+    <string name="but_deletearticle">Delete</string>
+    <string name="but_addcomment">Add comment</string>
     
 </resources>
