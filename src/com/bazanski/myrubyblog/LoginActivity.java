@@ -32,8 +32,8 @@ public class LoginActivity extends BaseActivity{
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(LoginActivity.this, null);
-				startActivity(i);
+				//Intent i = new Intent(LoginActivity.this, null);
+				//startActivity(i);
 			}
 		});
 	}

@@ -22,8 +22,8 @@ public class RegisterActivity extends BaseActivity{
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(RegisterActivity.this, null);
-				startActivity(i);
+				//Intent i = new Intent(RegisterActivity.this, null);
+				//startActivity(i);
 			}
 		});
 		
@@ -32,8 +32,8 @@ public class RegisterActivity extends BaseActivity{
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(RegisterActivity.this, null);
-				startActivity(i);
+				//Intent i = new Intent(RegisterActivity.this, null);
+				//startActivity(i);
 			}
 		});
 	}

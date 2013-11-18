@@ -1,73 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
+	
+	    <TextView
+	        android:id="@+id/article_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp"
+	        android:text="@string/text_testarticle" />
+	
+	    <View
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/article_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/text_testarticle" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"		android:layout_gravity="bottom"	
-        android:layout_margin="10dp" >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_height="match_parent" >
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:src="@drawable/ic_launcher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:textSize="20sp"
-                android:layout_height="wrap_content"
-                
-                android:text="n" />
-
-        </LinearLayout>
-        
-        <View 
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/but_editarticle"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/but_editarticle" />
-
-        <Button
-            android:id="@+id/but_deletearticle"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/but_deletearticle" />
-
-        <Button
-            android:id="@+id/but_addcomment"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/but_addcomment" />
-        
-    </LinearLayout>
-
-</LinearLayout>
+	    <TextView
+	        android:id="@+id/creation_date"
+	        android:layout_margin="10dp"
+	        android:layout_gravity="right"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="10sp"
+	        android:text="TextView" />
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="60dp"			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+	        android:layout_marginBottom="10dp" >
+	
+	        <LinearLayout
+	            android:id="@+id/show_comments"
+	            android:layout_width="wrap_content"
+	            android:gravity="left|center"
+	            android:background="@drawable/selector_default"
+	            android:layout_height="match_parent" >
+	
+	            <ImageView
+	                android:id="@+id/imageView1"
+	                android:src="@drawable/ic_comments"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" />
+	
+	            <TextView
+	                android:id="@+id/comm_count"
+	                android:layout_width="wrap_content"
+	                android:textSize="20sp"
+	                android:layout_height="wrap_content"
+	                android:text="n" />
+	
+	        </LinearLayout>
+	        
+	        <View 
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1" />
+	
+	        <Button
+	            android:id="@+id/but_editarticle"
+	            style="?android:attr/buttonStyleSmall"
+	            android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:layout_marginStart="5dp"
+	            android:background="@drawable/selector_default"
+	            android:text="@string/but_editarticle" />
+	
+	        <Button
+	            android:id="@+id/but_deletearticle"
+	            style="?android:attr/buttonStyleSmall"
+	            android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:layout_marginStart="5dp"
+	            android:background="@drawable/selector_default"
+	            android:text="@string/but_deletearticle" />
+	
+	        <Button
+	            android:id="@+id/but_addcomment"
+	            style="?android:attr/buttonStyleSmall"
+	            android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:layout_marginStart="5dp"
+	            android:visibility="gone"
+	            android:background="@drawable/selector_orange"
+	            android:text="@string/but_addcomment" />
+	        
+	    </LinearLayout>
+	
+	</LinearLayout>
+</ScrollView>

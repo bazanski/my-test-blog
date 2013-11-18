@@ -21,6 +21,8 @@
     <string name="text_testarticle">This article \n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla
         \n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla
         \n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla</string>
+    <string name="text_testcomment">My opinion number </string>
+    
     
     <string name="but_enter">Log in</string>
     <string name="but_register">Register</string>
@@ -29,5 +31,6 @@
     <string name="but_editarticle">Edit</string>
     <string name="but_deletearticle">Delete</string>
     <string name="but_addcomment">Add comment</string>
+    <string name="but_send">Send</string>
     
 </resources>

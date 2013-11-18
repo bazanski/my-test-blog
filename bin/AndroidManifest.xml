@@ -26,6 +26,7 @@
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".ShowArticleActivity"></activity>
+        <activity android:name=".ShowCommentsActivity"></activity>
     </application>
 
 </manifest>

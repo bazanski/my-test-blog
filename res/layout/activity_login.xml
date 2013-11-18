@@ -50,6 +50,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/selector_default"
             android:layout_gravity="center_horizontal"
             android:text="@string/but_enter" />
 
@@ -57,6 +58,7 @@
             android:id="@+id/but_loginvk"
             android:layout_width="230dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/selector_default"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_height="wrap_content"
