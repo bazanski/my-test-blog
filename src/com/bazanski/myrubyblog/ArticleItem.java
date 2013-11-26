@@ -10,10 +10,12 @@ public class ArticleItem {
 	private String dateTime;
 	private String author;
 	private long authorID;
+	private long postID;
 	private ArrayList<CommentItem> comments;
 	private Bundle article_data;
 	
-	public ArticleItem(String title, String text, String dateTime, String author, ArrayList<CommentItem> all_comments, long authorID) {
+	public ArticleItem(long postID, String title, String text, String dateTime, String author, ArrayList<CommentItem> all_comments, long authorID) {
+		this.postID = postID;
 		this.title = title;
 		this.text = text;
 		this.dateTime = dateTime;
@@ -28,6 +30,7 @@ public class ArticleItem {
 		this.article_data.putString("author", author);
 		this.article_data.putString("comments", null);
 		this.article_data.putLong("authorID", authorID);
+		this.article_data.putLong("p_id", postID);
 	}
 	
 	public ArticleItem(Bundle article_data) {
@@ -39,6 +42,14 @@ public class ArticleItem {
 	//============Getters==========
 	public Bundle getExtras() {
 		return this.article_data;
+	}
+	
+	public long getPostID() {
+		return this.postID;
+	}
+	
+	public String getPostID_toString() {
+		return String.valueOf(this.postID);
 	}
 	
 	public String getText() {

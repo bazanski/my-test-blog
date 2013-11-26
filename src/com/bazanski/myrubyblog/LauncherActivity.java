@@ -10,12 +10,17 @@ public class LauncherActivity extends BaseActivity {
 
 	Button login, register;
 	
+	Account acc;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launcher);
 		
 		setTitle(R.string.actiontitle_launcher);
+		
+		acc = new Account(this);
+		acc.setVkId(0);
 		
 		login = (Button)findViewById(R.id.but_login);
 		login.setOnClickListener(new OnClickListener() {

@@ -52,6 +52,7 @@
 	                android:layout_width="wrap_content"
 	                android:textSize="20sp"
 	                android:layout_height="wrap_content"
+	                android:visibility="gone"
 	                android:text="n" />
 	
 	        </LinearLayout>
@@ -64,7 +65,7 @@
 	        <Button
 	            android:id="@+id/but_editarticle"
 	            style="?android:attr/buttonStyleSmall"
-	            android:layout_width="wrap_content"
+	            android:layout_width="80dp"
 	            android:layout_height="match_parent"
 	            android:layout_marginStart="5dp"
 	            android:background="@drawable/selector_default"
@@ -73,7 +74,7 @@
 	        <Button
 	            android:id="@+id/but_deletearticle"
 	            style="?android:attr/buttonStyleSmall"
-	            android:layout_width="wrap_content"
+	            android:layout_width="80dp"
 	            android:layout_height="match_parent"
 	            android:layout_marginStart="5dp"
 	            android:background="@drawable/selector_default"

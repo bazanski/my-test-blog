@@ -7,14 +7,21 @@
 
     <string name="actiontitle_launcher">Welcome!</string>
     <string name="actiontitle_login">Authorization</string>
+    <string name="actiontitle_loginvk">Login with vk account</string>
     <string name="actiontitle_register">Registration</string>
+    <string name="actiontitle_registervk">Registration</string>
     <string name="actiontitle_main">Articles list</string>
     <string name="actiontitle_showarticle">Article :</string>
+    <string name="actiontitle_addarticle">Editing post</string>
     <string name="actiontitle_vklogin">vk.com Authorization</string>
+    <string name="actiontitle_collapse">Accounts union</string>
     
     <string name="text_appmaininfo">The best blog in the world =)</string>
     <string name="text_entername">Your name :</string>
     <string name="text_enteremail">Your e-mail :</string>
+    <string name="text_entersex">Sex :</string>
+    <string name="text_male">male</string>
+    <string name="text_femail">female</string>
     <string name="text_enterpass">Password :</string>
     <string name="text_repeatpass">Repeat password :</string>
     <string name="text_articleauthor">Author :</string>
@@ -22,6 +29,9 @@
         \n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla
         \n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla\n bla bla bla bla</string>
     <string name="text_testcomment">My opinion number </string>
+    <string name="text_title">Enter title</string>
+    <string name="text_text">Enter post text</string>
+    <string name="text_you">You</string>
     
     
     <string name="but_enter">Log in</string>
@@ -32,5 +42,6 @@
     <string name="but_deletearticle">Delete</string>
     <string name="but_addcomment">Add comment</string>
     <string name="but_send">Send</string>
+    <string name="but_makevkunion">Add vk account to this</string>
     
 </resources>

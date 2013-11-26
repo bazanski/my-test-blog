@@ -2,10 +2,13 @@ package com.bazanski.myrubyblog;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,8 +25,8 @@ public class BaseActivity extends Activity{
         bar = getActionBar();
         bar.setCustomView(R.layout.item_actionbar);
         bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
-        		| ActionBar.DISPLAY_SHOW_HOME 
-        		| ActionBar.DISPLAY_HOME_AS_UP);
+        		| ActionBar.DISPLAY_SHOW_HOME );
+        		//| ActionBar.DISPLAY_HOME_AS_UP);
         setEmptyActionItems();
     }
 
@@ -69,4 +72,6 @@ public class BaseActivity extends Activity{
     	item2nd_tv.setVisibility(LinearLayout.INVISIBLE);
     	sep.setVisibility(LinearLayout.INVISIBLE);
     }
+    
+    
 }
