@@ -136,8 +136,8 @@ public class MainActivity extends BaseActivity{
 		}
 		
 		String serverresponse = ic.php_showAllPosts();
-		Log.v("serverresponse", serverresponse);
 		if(serverresponse != null) {
+			Log.v("serverresponse", serverresponse);
 			String tmp[] = serverresponse.split(";;");
 			ArticleItem[] articles = new ArticleItem[tmp.length];
 			for(int i = 0; i < tmp.length; i++) {

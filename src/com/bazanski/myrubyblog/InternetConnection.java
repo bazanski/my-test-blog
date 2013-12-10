@@ -1,6 +1,7 @@
 package com.bazanski.myrubyblog;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -22,11 +23,15 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 public class InternetConnection {
 	
 	final static String PHP_USERS_SERVER_ADRESS = "http://bazanski.url.ph/blog/users.php";
 	final static String PHP_POSTS_SERVER_ADRESS = "http://bazanski.url.ph/blog/posts.php";
+	
+	RSA_lib rsa;
+	private String modulus, publicKey, privateKey;
 	
 	private Context ctx;
 	private Account acc;
@@ -34,8 +39,89 @@ public class InternetConnection {
 	public InternetConnection(Context context) {
 		this.ctx = context;
 		acc = new Account(this.ctx);
+		
+		this.rsa = new RSA_lib();
+		this.rsa.init(1024);
+		this.modulus = this.rsa.getModulus().toString();
+		this.publicKey = this.rsa.getPublicKey().toString();
+		this.privateKey = this.rsa.getPrivateKey().toString();
+	}
+
+	//======RSA_TEST==========
+	public String sendKeysAndWaitForMess(String N, String e) {
+		String result = "";
+		SendRSA sr = new SendRSA();
+		sr.execute(N, e);
+		try {
+			result = sr.get();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return result;
 	}
 	
+	public String sendKeysRequest(String mess) {
+		String result = "";
+		ReciveRSAKeys rrk = new ReciveRSAKeys();
+		rrk.execute();
+		try {
+			result = rrk.get();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		RSA_lib rsa = new RSA_lib();
+		rsa.setModulus(new BigInteger(result.split(";")[0]));
+		rsa.setPublicKey(new BigInteger(result.split(";")[1]));
+		char[] messArray = mess.toCharArray();
+		mess = "";
+		for(int i = 0; i < messArray.length; i++) {
+			String ch = String.valueOf(messArray[i]);
+			
+			mess += rsa.encrypt(new BigInteger(ch.getBytes())).toString() + " ";
+		}
+		//mess = rsa.encrypt(new BigInteger(mess.getBytes())).toString();
+		Toast.makeText(ctx, mess, Toast.LENGTH_SHORT).show();
+		SendRSAMess srm = new SendRSAMess();
+		srm.execute(mess);
+		String result2 = "";
+		try {
+			result2 = srm.get();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return result2;
+	}
+	
+	private String decrypt(String text) {
+		
+		String tmp[] = text.split(" ");
+		BigInteger encryptedText[] = new BigInteger[tmp.length];
+		String textRes = "";
+		for(int i = 0; i < tmp.length; i++) {
+			encryptedText[i] = new BigInteger(tmp[i]);
+			BigInteger decryptMessage = rsa.decrypt(encryptedText[i]);
+			byte[] r = decryptMessage.toByteArray();	
+			
+			for(int j = r.length - 1; j >= 0 ; j--) {
+				textRes += (char)r[j];
+			}					
+		}
+		return textRes;
+	}
 	//======VK_API========
 	public String getProfileName_Sex(String vk_u_id) {
 		String result = "";
@@ -173,12 +259,14 @@ public class InternetConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(result.contains("ok")) {
-			
-			result = result.replaceFirst("ok;;", "");
-//			Log.v("res.split0", tmp[0]);
-			Log.v("res.split1", result);
-			return result;
+		Log.v("show all posts RESULT after decrypt", result);
+		if(!result.equals("ok")) {
+			if(result.contains("ok")) {
+				result = result.replaceFirst("ok;;", "");
+				Log.v("afterReplase", result);
+				return result;
+			}
+			else return null;
 		}
 		else return null; 
 	}
@@ -356,6 +444,186 @@ public class InternetConnection {
 		}
 		else return false; 
 	}
+	
+	//======RSA CONNECTION=======
+	class SendRSA extends AsyncTask<String, Void, String> {
+
+ 		ProgressDialog dialog;
+		
+		@Override
+		protected void onPreExecute() {
+			dialog = ProgressDialog.show(ctx, "Внимание", "Идет связь с сервером");
+		}
+		
+		@Override
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			return sendRsa(params[0], params[1]);
+		}
+		
+
+		@Override
+		protected void onPostExecute(String result) {
+			dialog.dismiss();
+		}
+		
+		private String sendRsa(String N, String e) {
+			Account acc = new Account(ctx);
+			String responseString = "";
+			HttpClient httpclient = new DefaultHttpClient();
+
+			//HttpPost httppost = new HttpPost("https://api.vkontakte.ru/method/getProfiles");
+			HttpPost httppost = new HttpPost("http://bazanski.url.ph/blog/test.php");
+			try {
+				// определяешь элементы массива POST
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+
+				nameValuePairs.add(new BasicNameValuePair("do", "recive"));
+				nameValuePairs.add(new BasicNameValuePair("N", N));
+				nameValuePairs.add(new BasicNameValuePair("e", e));
+
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+				// выполняешь POST-запрос
+
+				HttpResponse response = httpclient.execute(httppost);
+
+				// получение ответа от сервера
+				responseString = EntityUtils.toString(response.getEntity(),
+						"UTF-8");//
+
+			} catch (ClientProtocolException e1) {
+
+				// TODO Auto-generated catch block
+
+			} catch (IOException e1) {
+
+				// TODO Auto-generated catch block
+
+			}
+			Log.v("RESPONSE RSAsend", responseString);
+			return responseString;
+		}
+ 	}
+	
+	class ReciveRSAKeys extends AsyncTask<Void, Void, String> {
+
+ 		ProgressDialog dialog;
+		
+		@Override
+		protected void onPreExecute() {
+			dialog = ProgressDialog.show(ctx, "Внимание", "Идет связь с сервером");
+		}
+		
+		@Override
+		protected String doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			return keysRequestRsa();
+		}
+		
+
+		@Override
+		protected void onPostExecute(String result) {
+			dialog.dismiss();
+		}
+		
+		private String keysRequestRsa() {
+			Account acc = new Account(ctx);
+			String responseString = "";
+			HttpClient httpclient = new DefaultHttpClient();
+
+			//HttpPost httppost = new HttpPost("https://api.vkontakte.ru/method/getProfiles");
+			HttpPost httppost = new HttpPost("http://bazanski.url.ph/blog/test.php");
+			try {
+				// определяешь элементы массива POST
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+
+				nameValuePairs.add(new BasicNameValuePair("do", "keys"));
+				//nameValuePairs.add(new BasicNameValuePair("do", ""));
+
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+				// выполняешь POST-запрос
+
+				HttpResponse response = httpclient.execute(httppost);
+
+				// получение ответа от сервера
+				responseString = EntityUtils.toString(response.getEntity(),
+						"UTF-8");//
+
+			} catch (ClientProtocolException e1) {
+
+				// TODO Auto-generated catch block
+
+			} catch (IOException e1) {
+
+				// TODO Auto-generated catch block
+
+			}
+			Log.v("RESPONSE RSAsend", responseString);
+			return responseString;
+		}
+ 	}
+	
+	class SendRSAMess extends AsyncTask<String, Void, String> {
+
+ 		ProgressDialog dialog;
+		
+		@Override
+		protected void onPreExecute() {
+			dialog = ProgressDialog.show(ctx, "Внимание", "Идет связь с сервером");
+		}
+		
+		@Override
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			return sendMessRsa(params[0]);
+		}
+		
+
+		@Override
+		protected void onPostExecute(String result) {
+			dialog.dismiss();
+		}
+		
+		private String sendMessRsa(String mess) {
+			Account acc = new Account(ctx);
+			String responseString = "";
+			HttpClient httpclient = new DefaultHttpClient();
+
+			//HttpPost httppost = new HttpPost("https://api.vkontakte.ru/method/getProfiles");
+			HttpPost httppost = new HttpPost("http://bazanski.url.ph/blog/test.php");
+			try {
+				// определяешь элементы массива POST
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+
+				nameValuePairs.add(new BasicNameValuePair("do", "mess"));
+				nameValuePairs.add(new BasicNameValuePair("mess", mess));
+
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+				// выполняешь POST-запрос
+
+				HttpResponse response = httpclient.execute(httppost);
+
+				// получение ответа от сервера
+				responseString = EntityUtils.toString(response.getEntity(),
+						"UTF-8");//
+
+			} catch (ClientProtocolException e1) {
+
+				// TODO Auto-generated catch block
+
+			} catch (IOException e1) {
+
+				// TODO Auto-generated catch block
+
+			}
+			Log.v("RESPONSE RSAsend", responseString);
+			return responseString;
+		}
+ 	}
+	
 	
 	//======RUBY CONNECTION======
 	
@@ -705,10 +973,12 @@ public class InternetConnection {
 
 			try {
 				// определяешь элементы массива POST
-				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
 
 				nameValuePairs.add(new BasicNameValuePair("os", "android"));
 				nameValuePairs.add(new BasicNameValuePair("do", "show_all_posts"));
+				nameValuePairs.add(new BasicNameValuePair("N", modulus));
+				nameValuePairs.add(new BasicNameValuePair("e", publicKey));
 
 				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
@@ -729,8 +999,8 @@ public class InternetConnection {
 				// TODO Auto-generated catch block
 
 			}
-			Log.v("RESPONSE", responseString);
-			return responseString;
+			Log.v("RESPONSE showAllposts", responseString);
+			return decrypt(responseString);
 		}
 		
  		
@@ -765,11 +1035,13 @@ public class InternetConnection {
 
 			try {
 				// определяешь элементы массива POST
-				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
 
 				nameValuePairs.add(new BasicNameValuePair("os", "android"));
 				nameValuePairs.add(new BasicNameValuePair("do", "show_one_post"));
 				nameValuePairs.add(new BasicNameValuePair("p_id", p_id));
+				nameValuePairs.add(new BasicNameValuePair("N", modulus));
+				nameValuePairs.add(new BasicNameValuePair("e", publicKey));
 
 				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
@@ -791,7 +1063,7 @@ public class InternetConnection {
 
 			}
 			Log.v("RESPONSE", responseString);
-			return responseString;
+			return decrypt(responseString);
 		}
 		
  		
