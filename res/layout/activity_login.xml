@@ -14,8 +14,8 @@
             android:id="@+id/tv_info"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:text="" />
 
         <EditText
@@ -24,8 +24,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:hint="@string/text_enteremail"
             android:inputType="textEmailAddress" 
             android:text="" >
@@ -39,8 +39,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:hint="@string/text_enterpass"
             android:inputType="textPassword" 
             android:text="" />
@@ -49,8 +49,8 @@
             android:id="@+id/but_login"
             android:layout_width="230dp"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_default"
             android:layout_gravity="center_horizontal"
@@ -61,8 +61,8 @@
             android:layout_width="230dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/selector_default"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/but_entervk" />

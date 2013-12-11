@@ -52,7 +52,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/selector_default"
             android:text="@string/but_deletearticle" />
     </LinearLayout>
