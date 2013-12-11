@@ -81,15 +81,13 @@ public class LauncherActivity extends BaseActivity {
 			}
 		});
 		//ic.getRSAkeysFromServer();
-		/*
-		rsa = new RSA_lib(1024);
-		String res = "";
-		res = ic.sendKeysAndWaitForMess("1024", "1");
 		
+		//rsa = new RSA_lib(128);
+				
 		//String newString = new String(res.getBytes("UTF-8"), "Cp1251");
-		Log.w("RESPONSE", res);
-		Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
+		//Log.w("RESPONSE", rsa.toString());
+		//Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
 		//Toast.makeText(this, rsa.decode(rsa.encode("ÔË‚ÂÚ œ¿÷¿Õ€", rsa), rsa), Toast.LENGTH_SHORT).show();
-		*/
+		
 	}
 }

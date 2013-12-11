@@ -130,6 +130,12 @@ public class InternetConnection {
 		//Toast.makeText(ctx, server_modulus + " " + server_publicKey, Toast.LENGTH_SHORT).show();
 	}
 
+	public String encodeParam(String param) {
+		String res = "";
+		res = this.server_rsa.encode(param, this.server_rsa);
+		return res;
+	}
+	
 	//======VK_API========
 	public String getProfileName_Sex(String vk_u_id) {
 		String result = "";
@@ -237,7 +243,7 @@ public class InternetConnection {
 		String result = "";
 		Php_AddingPost pad = new Php_AddingPost();
 		Log.v("uID", acc.getUID_toString());
-		pad.execute(title, text);
+		pad.execute(server_rsa.encode(title, server_rsa), server_rsa.encode(text, server_rsa));
 		Log.v("RESPONSE", "after execute");
 		try {
 			result = pad.get();
@@ -632,7 +638,6 @@ public class InternetConnection {
 			return responseString;
 		}
  	}
-	
 	
 	//======RUBY CONNECTION======
 	

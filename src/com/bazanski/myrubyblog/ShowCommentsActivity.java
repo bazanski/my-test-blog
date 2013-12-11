@@ -31,6 +31,7 @@ public class ShowCommentsActivity extends BaseActivity{
 		
 		ic = new InternetConnection(this);
 		acc = new Account(this);
+		ic.getRSAkeysFromServer();
 		
 		article_data = getIntent().getExtras();
 		

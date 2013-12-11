@@ -28,6 +28,7 @@ public class ShowArticleActivity extends BaseActivity{
 		
 		acc = new Account(this);
 		ic = new InternetConnection(this);
+		ic.getRSAkeysFromServer();
 		
 		article_data = getIntent().getExtras();
 		article = new ArticleItem(article_data);

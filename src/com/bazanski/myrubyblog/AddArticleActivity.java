@@ -27,6 +27,7 @@ public class AddArticleActivity extends BaseActivity{
 
         setTitle(R.string.actiontitle_addarticle);
         ic = new InternetConnection(this);
+        ic.getRSAkeysFromServer();
         
         et_title = (EditText)findViewById(R.id.et_title);
         et_text = (EditText)findViewById(R.id.et_text);

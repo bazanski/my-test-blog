@@ -27,6 +27,7 @@ public class MainActivity extends BaseActivity{
 		
 		acc = new Account(this);
 		ic = new InternetConnection(this);
+		ic.getRSAkeysFromServer();
 		
 		setMainActionItems();
 		main = (LinearLayout)findViewById(R.id.main_layout);
